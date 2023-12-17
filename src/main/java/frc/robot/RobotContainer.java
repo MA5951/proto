@@ -8,12 +8,14 @@ import com.ma5951.utils.commands.MotorCommand;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
+import frc.robot.commands.setIntake;
 import frc.robot.subsystem.intake.Intake;
 public class RobotContainer {
 
-  public static final Joystick leftJoystick = new Joystick(0);
-  public static final Joystick rightJoystick = new Joystick(1);
+  public static final CommandJoystick leftJoystick = new CommandJoystick(0);
+  public static final CommandJoystick rightJoystick = new CommandJoystick(1);
   public static final CommandPS4Controller joystick = new CommandPS4Controller(2);
 
   public RobotContainer() {
@@ -21,11 +23,9 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    joystick.triangle().whileTrue(new MotorCommand(
-      Intake.getInstance(), 0.5, 0));
+    leftJoystick.button(1).whileTrue(new setIntake());
 
-    joystick.cross().whileTrue(new MotorCommand(
-      Intake.getInstance(), -0.5, 0));
+
   }
 
   public Command getAutonomousCommand() {
