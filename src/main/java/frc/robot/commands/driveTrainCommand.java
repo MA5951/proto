@@ -23,8 +23,16 @@ public class driveTrainCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.setLeft(RobotContainer.leftJoystick.getY());
-    driveTrain.setRight(RobotContainer.rightJoystick.getY());
+    if (Math.abs(RobotContainer.leftJoystick.getY()) > 0.06) {
+      driveTrain.setLeft(-RobotContainer.leftJoystick.getY());
+    } else {
+      driveTrain.setLeft(0);
+    }
+    if (Math.abs(RobotContainer.rightJoystick.getY()) > 0.06) {
+      driveTrain.setRight(RobotContainer.rightJoystick.getY());
+    } else {
+      driveTrain.setRight(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
