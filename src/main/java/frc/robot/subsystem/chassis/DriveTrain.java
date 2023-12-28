@@ -23,6 +23,9 @@ public class DriveTrain extends SubsystemBase {
 
     leftMotor.setIdleMode(IdleMode.kBrake);
     rightMotor.setIdleMode(IdleMode.kBrake);
+    
+    leftMotor.setInverted(true);
+    rightMotor.setInverted(true);
   }
 
   public void setLeft(double power) {

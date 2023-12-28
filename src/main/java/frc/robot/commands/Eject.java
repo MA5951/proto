@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystem.intake.Intake;
 
-public class setIntake extends CommandBase {
-  private Intake intake;
-  /** Creates a new setIntake. */
-  public setIntake() {
+public class Eject extends CommandBase {
+  public Intake intake;
+
+  public Eject() {
     intake = Intake.getInstance();
     addRequirements(intake);
   }
@@ -22,7 +22,7 @@ public class setIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setSpeed(intake.getIntakeSpeed());
+    intake.setSpeed(intake.getEjectSpeed());
   }
 
   // Called once the command ends or is interrupted.
