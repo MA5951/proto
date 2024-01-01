@@ -18,8 +18,8 @@ public class DriveTrain extends SubsystemBase {
   private static DriveTrain instance;
 
   private DriveTrain() {
-    leftMotor = new CANSparkMax(14, MotorType.kBrushless);
-    rightMotor = new CANSparkMax(17, MotorType.kBrushless);
+    leftMotor = new CANSparkMax(0, MotorType.kBrushless);
+    rightMotor = new CANSparkMax(1, MotorType.kBrushless);
 
     leftMotor.setIdleMode(IdleMode.kBrake);
     rightMotor.setIdleMode(IdleMode.kBrake);

@@ -26,8 +26,8 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   private MAShuffleboard board;
 
   private Intake() {
-    UpperMotor = new CANSparkMax(3, MotorType.kBrushless);
-    LMotor= new CANSparkMax(13, MotorType.kBrushless);
+    UpperMotor = new CANSparkMax(14, MotorType.kBrushless);
+    LMotor= new CANSparkMax(18, MotorType.kBrushless);
 
     board = new MAShuffleboard("IntakeFootball");
     
