@@ -14,51 +14,44 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Intake extends SubsystemBase implements MotorSubsystem{
 
   private static Intake instance;
-  private CANSparkMax UpperMotor;
-  private CANSparkMax LMotor;
+  private CANSparkMax MotorOne;
+  private CANSparkMax MotorTwo;
 
 
-  private double IntakeSpeed;
-  private double EjectSpeed;
-  private boolean invertsecondmotor;
+  private double MotorOneSpeed;
+  private double MotorTwoSpeed;
 
   private MAShuffleboard board;
 
   private Intake() {
-    UpperMotor = new CANSparkMax(14, CANSparkLowLevel.MotorType.kBrushless);
-    LMotor = new CANSparkMax(18, CANSparkLowLevel.MotorType.kBrushless);
+    MotorOne = new CANSparkMax(14, CANSparkLowLevel.MotorType.kBrushless);
+    MotorTwo = new CANSparkMax(18, CANSparkLowLevel.MotorType.kBrushless);
 
     board = new MAShuffleboard("IntakeFootball");
     
-    board.addNum("Intake Speed", IntakeSpeed);
-    board.addNum("Eject Speed", EjectSpeed);
-    board.addBoolean("invert second motor", invertsecondmotor);
+    board.addNum("Motor 1 Speed", MotorOneSpeed);
+    board.addNum("Motor 2 Speed", MotorTwoSpeed);
   }
 
-  public void setSpeed (double speed) {
-    UpperMotor.set(speed);
-    if (getInvertSecondMotor()) {
-      LMotor.set(-speed);
-    } else {
-      LMotor.set(speed);
-    }
+  public void setMotorOneSpeed (double speed) {
+    MotorOne.set(speed);
   }
 
-  public double getIntakeSpeed() {
-    return board.getNum("Intake Speed");
+  public void setMotorTwoSpeed (double speed) {
+    MotorTwo.set(speed);
   }
 
-  public double getEjectSpeed() {
-    return board.getNum("Eject Speed");
+  public double getMotorOneSpeed() {
+    return board.getNum("Motor 1 Speed");
   }
 
-  public boolean getInvertSecondMotor() {
-    return board.getBoolean("invert second motor");
+  public double getMotorTwoSpeed() {
+    return board.getNum("Motor 2 Speed");
   }
 
   public void stop () {
-    UpperMotor.set(0);
-    LMotor.set(0);
+    MotorOne.set(0);
+    MotorTwo.set(0);
   }
 
   public static Intake getInstance() {
@@ -71,8 +64,8 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    board.addNum("Left motor Speed", LMotor.getEncoder().getVelocity());
-    board.addNum("Right motor Speed", UpperMotor.getEncoder().getVelocity());
+    board.addNum("Left motor Speed", MotorTwo.getEncoder().getVelocity());
+    board.addNum("Right motor Speed", MotorOne.getEncoder().getVelocity());
 
   }
 
@@ -85,12 +78,7 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
 
   @Override
   public void setVoltage(double voltage) {
-    UpperMotor.set(voltage/12d);
-
-    if (getInvertSecondMotor()) {
-      LMotor.set(-voltage/12d);
-    } else {
-      LMotor.set(voltage/12d);
-    }
+    MotorOne.set(voltage/12d);
+    MotorTwo.set(voltage/12d);
   }
 }

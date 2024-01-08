@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.commands.Eject;
 import frc.robot.commands.setIntake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -28,9 +27,6 @@ public class RobotContainer {
 
   private void configureBindings() {
     leftJoystick.button(1).whileTrue(new setIntake());
-    rightJoystick.button(1).whileTrue(new Eject());
-    
-
   }
 
   public Command getAutonomousCommand() {
