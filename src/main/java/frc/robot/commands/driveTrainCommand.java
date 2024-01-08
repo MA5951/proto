@@ -4,11 +4,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystem.chassis.DriveTrain;
+import frc.robot.subsystems.chassis.DriveTrain;
 
-public class driveTrainCommand extends CommandBase {
+public class driveTrainCommand extends Command {
   private DriveTrain driveTrain;
 
   public driveTrainCommand() {

@@ -4,10 +4,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystem.intake.Intake;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.intake.Intake;
 
-public class Eject extends CommandBase {
+public class Eject extends Command {
   public Intake intake;
 
   public Eject() {

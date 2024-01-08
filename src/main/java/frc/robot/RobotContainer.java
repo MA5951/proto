@@ -4,13 +4,18 @@
 
 package frc.robot;
 
-import com.ma5951.utils.commands.MotorCommand;
-
+import frc.robot.commands.Eject;
+import frc.robot.commands.setIntake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
-import frc.robot.commands.Eject;
-import frc.robot.commands.setIntake;
+
+/**
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * subsystems, commands, and trigger mappings) should be declared here.
+ */
 public class RobotContainer {
 
   public static final CommandJoystick leftJoystick = new CommandJoystick(0);
