@@ -4,10 +4,12 @@
 
 package frc.robot;
 
-import frc.robot.commands.setIntake;
+// import frc.robot.commands.setIntake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
+import frc.robot.commands.setDrivetrain;
+import frc.robot.subsystems.chassis.DriveTrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,13 +22,29 @@ public class RobotContainer {
   public static final CommandJoystick leftJoystick = new CommandJoystick(0);
   public static final CommandJoystick rightJoystick = new CommandJoystick(1);
   public static final CommandPS4Controller joystick = new CommandPS4Controller(2);
+  private DriveTrain driveTrain;
 
   public RobotContainer() {
+    driveTrain = DriveTrain.getInstance();
     configureBindings();
   }
 
   private void configureBindings() {
-    leftJoystick.button(1).whileTrue(new setIntake());
+    // leftJoystick.button(1).whileTrue(new setIntake());
+    if (Math.abs(RobotContainer.leftJoystick.getY()) > 0.06) {
+      driveTrain.setLeft(-RobotContainer.leftJoystick.getY());
+    } else {
+      driveTrain.setLeft(0);
+    }
+    if (Math.abs(RobotContainer.rightJoystick.getY()) > 0.06) {
+      driveTrain.setRight(RobotContainer.rightJoystick.getY());
+    } else {
+      driveTrain.setRight(0);
+    }
+
+    leftJoystick.button(1).whileTrue(new setDrivetrain());
+
+    System.out.println(RobotContainer.leftJoystick.getY());
   }
 
   public Command getAutonomousCommand() {
