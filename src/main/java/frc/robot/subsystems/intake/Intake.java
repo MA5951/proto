@@ -16,21 +16,28 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   private static Intake instance;
   private CANSparkMax MotorOne;
   private CANSparkMax MotorTwo;
-
+  private CANSparkMax MotorThree;
+  private CANSparkMax MotorFour;
 
   private double MotorOneSpeed;
   private double MotorTwoSpeed;
+  private double MotorThreeSpeed;
+  private double MotorFourSpeed;
 
   private MAShuffleboard board;
 
   private Intake() {
     MotorOne = new CANSparkMax(14, CANSparkLowLevel.MotorType.kBrushless);
     MotorTwo = new CANSparkMax(18, CANSparkLowLevel.MotorType.kBrushless);
+    MotorThree = new CANSparkMax(13, CANSparkLowLevel.MotorType.kBrushless);
+    MotorFour = new CANSparkMax(17, CANSparkLowLevel.MotorType.kBrushless);
 
-    board = new MAShuffleboard("IntakeFootball");
+    board = new MAShuffleboard("Prototype");
     
     board.addNum("Motor 1 Speed", MotorOneSpeed);
     board.addNum("Motor 2 Speed", MotorTwoSpeed);
+    board.addNum("Motor 3 Speed", MotorThreeSpeed);
+    board.addNum("Motor 4 Speed", MotorFourSpeed);
   }
 
   public void setMotorOneSpeed (double speed) {
@@ -41,6 +48,14 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
     MotorTwo.set(speed);
   }
 
+  public void setMotorThreeSpeed (double speed) {
+    MotorThree.set(speed);
+  }
+
+  public void setMotorFourSpeed (double speed) {
+    MotorFour.set(speed);
+  }
+
   public double getMotorOneSpeed() {
     return board.getNum("Motor 1 Speed");
   }
@@ -49,9 +64,19 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
     return board.getNum("Motor 2 Speed");
   }
 
+  public double getMotorThreeSpeed() {
+    return board.getNum("Motor 3 Speed");
+  }
+
+  public double getMotorFourSpeed() {
+    return board.getNum("Motor 4 Speed");
+  }
+
   public void stop () {
     MotorOne.set(0);
     MotorTwo.set(0);
+    MotorThree.set(0);
+    MotorFour.set(0);
   }
 
   public static Intake getInstance() {
@@ -64,9 +89,10 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    board.addNum("Left motor Speed", MotorTwo.getEncoder().getVelocity());
-    board.addNum("Right motor Speed", MotorOne.getEncoder().getVelocity());
-
+    board.addNum("motor 2 Speed", MotorTwo.getEncoder().getVelocity());
+    board.addNum("motor 1 Speed", MotorOne.getEncoder().getVelocity());
+    board.addNum("motor 3 Speed", MotorThree.getEncoder().getVelocity());
+    board.addNum("motor 4 Speed", MotorFour.getEncoder().getVelocity());
   }
 
 
@@ -80,5 +106,7 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   public void setVoltage(double voltage) {
     MotorOne.set(voltage/12d);
     MotorTwo.set(voltage/12d);
+    MotorThree.set(voltage/12d);
+    MotorFour.set(voltage/12d);
   }
 }

@@ -24,6 +24,8 @@ public class setIntake extends Command {
   public void execute() {
     intake.setMotorOneSpeed(intake.getMotorOneSpeed());
     intake.setMotorTwoSpeed(intake.getMotorTwoSpeed());
+    intake.setMotorThreeSpeed(intake.getMotorThreeSpeed());
+    intake.setMotorFourSpeed(intake.getMotorFourSpeed());
   }
 
   // Called once the command ends or is interrupted.
