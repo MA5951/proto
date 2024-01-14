@@ -34,10 +34,10 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
 
     board = new MAShuffleboard("Prototype");
     
-    board.addNum("Motor 1 Speed", MotorOneSpeed);
-    board.addNum("Motor 2 Speed", MotorTwoSpeed);
-    board.addNum("Motor 3 Speed", MotorThreeSpeed);
-    board.addNum("Motor 4 Speed", MotorFourSpeed);
+    board.addNum("Motor 1, id: " + MotorOne.getDeviceId(), MotorOneSpeed);
+    board.addNum("Motor 2, id: " + MotorTwo.getDeviceId(), MotorTwoSpeed);
+    board.addNum("Motor 3, id: " + MotorThree.getDeviceId(), MotorThreeSpeed);
+    board.addNum("Motor 4, id: " + MotorFour.getDeviceId(), MotorFourSpeed);
   }
 
   public void setMotorOneSpeed (double speed) {
@@ -57,19 +57,19 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   }
 
   public double getMotorOneSpeed() {
-    return board.getNum("Motor 1 Speed");
+    return board.getNum("Motor 1, id: " + MotorOne.getDeviceId());
   }
 
   public double getMotorTwoSpeed() {
-    return board.getNum("Motor 2 Speed");
+    return board.getNum("Motor 2, id: " + MotorTwo.getDeviceId());
   }
 
   public double getMotorThreeSpeed() {
-    return board.getNum("Motor 3 Speed");
+    return board.getNum("Motor 3, id: " + MotorThree.getDeviceId());
   }
 
   public double getMotorFourSpeed() {
-    return board.getNum("Motor 4 Speed");
+    return board.getNum("Motor 4, id: " + MotorFour.getDeviceId());
   }
 
   public void stop () {
@@ -89,10 +89,10 @@ public class Intake extends SubsystemBase implements MotorSubsystem{
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    board.addNum("motor 2 Speed", MotorTwo.getEncoder().getVelocity());
-    board.addNum("motor 1 Speed", MotorOne.getEncoder().getVelocity());
-    board.addNum("motor 3 Speed", MotorThree.getEncoder().getVelocity());
-    board.addNum("motor 4 Speed", MotorFour.getEncoder().getVelocity());
+    board.addNum("motor 2 velocity", MotorTwo.getEncoder().getVelocity());
+    board.addNum("motor 1 velocity", MotorOne.getEncoder().getVelocity());
+    board.addNum("motor 3 velocity", MotorThree.getEncoder().getVelocity());
+    board.addNum("motor 4 velocity", MotorFour.getEncoder().getVelocity());
   }
 
 
