@@ -23,7 +23,7 @@ public class setDrivetrain extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.setLeft(-RobotContainer.leftJoystick.getY());
+    driveTrain.setLeft(RobotContainer.leftJoystick.getY());
     driveTrain.setRight(RobotContainer.rightJoystick.getY());
   }
 
